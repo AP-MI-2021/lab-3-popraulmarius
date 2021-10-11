@@ -1,4 +1,5 @@
 import math
+#1
 def get_longest_all_perfect_squares(lst: list):
     longest=0
     longest_poz=0
@@ -23,7 +24,7 @@ def get_longest_all_perfect_squares(lst: list):
             lst2.append(lst[i])
     return lst2
 
-
+#2
 def get_longest_average_below(lst, average):
     ceamailunga=0
     poz=-1
@@ -42,7 +43,7 @@ def get_longest_average_below(lst, average):
             lst2.append(lst[i])
     return lst2
 
-
+#3
 def get_longest_div_k(lst,k):
     longest = 0
     longest_poz = 0
