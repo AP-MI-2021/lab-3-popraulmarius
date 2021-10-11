@@ -42,11 +42,41 @@ def get_longest_average_below(lst, average):
             lst2.append(lst[i])
     return lst2
 
+
+def get_longest_div_k(lst,k):
+    longest = 0
+    longest_poz = 0
+    lungime_actuala = 0
+    actual_poz = -1
+    poz = -1
+    for i in lst:
+        poz = poz + 1
+        if i%k==0:
+            lungime_actuala = lungime_actuala + 1
+            if lungime_actuala == 1:
+                actual_poz = poz
+        else:
+            lungime_actuala = 0
+            actual_poz = 0
+        if lungime_actuala > longest:
+            longest = lungime_actuala
+            longest_poz = actual_poz
+    lst2 = []
+    if actual_poz != -1:
+        for i in range(longest_poz, longest_poz + longest):
+            lst2.append(lst[i])
+    return lst2
+
 def test_get_longest_all_perfect_squares():
     assert get_longest_all_perfect_squares([])==[]
     assert get_longest_all_perfect_squares([25])==[25]
     assert get_longest_all_perfect_squares([0])==[]
     assert get_longest_all_perfect_squares([10, 9, 25])==[9, 25]
+
+def test_get_longest_div_k():
+    assert get_longest_div_k([5,10,4,25],5)==[5,10]
+    assert get_longest_div_k([0,1,2,3,4],2)==[0]
+    assert get_longest_div_k([1,2,3,4,5],1)==[1,2,3,4,5]
 
 def test_get_longest_average_below():
     assert get_longest_average_below([1,2,3],1.6)==[1,2]
@@ -56,7 +86,8 @@ def main():
     while True:
         print("1.Determina cea mai lunga secventa de patrate perfecte dintr-o lista data.")
         print("2.Determina cea mai lunga secventa cu proprietatea ca media numerelor din subsecventa este mai mica decat o valoare data .")
-        print("3.Iesire din program.")
+        print("3.Determina cea mai lunga secventa cu proprietatea ca toate numerele din subsecventa sunt divizibile cu un numar dat.")
+        print("4.Iesire din program.")
         optiune = input("Alege optiunea:")
         if optiune == '1':
             test_get_longest_all_perfect_squares()
@@ -74,6 +105,14 @@ def main():
             average=float(input("Valoarea data pentru medie:"))
             print( get_longest_average_below(lst,average))
         elif optiune == '3':
+            test_get_longest_div_k()
+            lst=[]
+            n = int(input("Numarul de numere:"))
+            for i in range(0, n):
+                lst.append(int(input("Dati " + str(n) + " numere:")))
+            k = int(input("Numarul cu care trebuie sa fie divizibile elementele secventei:"))
+            print(get_longest_div_k(lst,k))
+        elif optiune == '4':
             break
 main()
 
